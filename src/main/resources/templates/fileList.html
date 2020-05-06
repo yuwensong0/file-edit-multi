@@ -1,0 +1,19 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FileList</title>
+</head>
+<body>
+<h1>FileList</h1>
+<a th:href="@{/insertFile}">File Insert</a>
+<div th:each="file, stat: ${fileList}">
+    <a th:text="${file.fileName}" th:href="@{${file.filePath}}" th:download="${file.fileName}"/>
+    <a th:href="@{'/editFile?fileId='+${file.fileId}}">edit</a><br>
+</div>
+
+</body>
+<script>
+
+</script>
+</html>

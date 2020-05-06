@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>File Insert</title>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function(){
+            //表单异步提交
+            $("#save-btn").on("click",function() {
+                $.ajax({
+                    type: 'post',
+                    data: JSON.stringify({
+                        fileName: $("#fileName").val(),
+                        fileContent: $("#fileContent").val()
+                    }),
+                    url: '[[@{/}]]saveFile',
+                    cache: false,
+                    contentType: "application/json;charset=utf-8",
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.data) {
+                            window.location.href =  /*[[@{/login}]]*/"fileList";
+                        } else {
+                            alert("save failed")
+                        }
+                    }
+                })
+            })
+        });
+    </script>
+</head>
+<body>
+<h1>File Insert</h1>
+<form id="form">
+    fileName: <input type="text" id="fileName" name="fileName" /><br/><br/>
+    fileContent: <textarea rows="3" cols="100" id="fileContent" name="fileContent"></textarea><br/>
+
+</form>
+<input id="save-btn" type="submit" value="submit"></input>
+
+</body>
+<script>
+
+</script>
+</html>
